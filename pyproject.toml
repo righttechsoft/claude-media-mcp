@@ -1,0 +1,14 @@
+[project]
+name = "claude-media-mcp"
+version = "0.1.0"
+description = "MCP server for image, video and audio generation via OpenAI, Gemini, fal.ai and Cloudflare Workers AI / AI Gateway"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.11"
+dependencies = ["mcp<2", "httpx", "pillow"]
+
+[project.urls]
+Repository = "https://github.com/righttechsoft/claude-media-mcp"
+
+[tool.uv]
+package = false
