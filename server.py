@@ -398,7 +398,7 @@ async def generate_image(
 
     provider (default: first configured of openai, gemini, fal, cloudflare):
     - openai: default model gpt-image-2. aspect_ratio maps to size (1:1 -> 1024x1024; 16:9/3:2/4:3 -> 1536x1024; 9:16/2:3/3:4 -> 1024x1536). options merged into the request body (e.g. quality, background, n, output_format); options["size"] wins. input_images switches to /images/edits.
-    - gemini: default gemini-3-pro-image-preview (Nano Banana Pro). aspect_ratio -> imageConfig.aspectRatio (e.g. 16:9). options shallow-update generationConfig (e.g. imageConfig with imageSize).
+    - gemini: default gemini-3-pro-image (Nano Banana Pro). aspect_ratio -> imageConfig.aspectRatio (e.g. 16:9). options shallow-update generationConfig (e.g. imageConfig with imageSize).
     - fal: default fal-ai/nano-banana-pro. Input {prompt, aspect_ratio, image_urls} updated with options (model-specific params such as num_images, resolution, image_size). Any model id works.
     - cloudflare: default @cf/black-forest-labs/flux-1-schnell. Body {prompt} updated with options (e.g. steps, seed). No input_images.
 
@@ -439,7 +439,7 @@ async def generate_image(
                 cfg["imageConfig"] = {"aspectRatio": aspect_ratio}
             cfg.update(options)
             resp = await gemini_generate(
-                client, model or "gemini-3-pro-image-preview",
+                client, model or "gemini-3-pro-image",
                 {"contents": [{"parts": parts}], "generationConfig": cfg},
             )
             for part in gemini_parts(resp):
@@ -623,7 +623,7 @@ async def generate_audio(
 
     provider (default: first configured of openai, gemini, fal, cloudflare):
     - openai: default gpt-4o-mini-tts, voice default alloy, mp3 output. options merged into the request (e.g. instructions, speed, response_format).
-    - gemini: default gemini-2.5-flash-preview-tts, voice default Kore (prebuilt voice name). options shallow-update generationConfig. Output is WAV.
+    - gemini: default gemini-3.8-flash-tts, voice default Kore (prebuilt voice name). options shallow-update generationConfig. Output is WAV.
     - fal: default fal-ai/elevenlabs/tts/turbo-v2.5. Input {text, voice} updated with options. Prompt-based fal audio models (music, sound effects) take options={"prompt": "..."}; any model id works.
     - cloudflare: default @cf/deepgram/aura-1. Body {text, speaker=voice} updated with options.
     """
@@ -647,7 +647,7 @@ async def generate_audio(
             }
             cfg.update(options)
             resp = await gemini_generate(
-                client, model or "gemini-2.5-flash-preview-tts",
+                client, model or "gemini-3.8-flash-tts",
                 {"contents": [{"parts": [{"text": text}]}], "generationConfig": cfg},
             )
             for part in gemini_parts(resp):

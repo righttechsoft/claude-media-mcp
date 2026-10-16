@@ -7,7 +7,7 @@ One Python file, three dependencies, one `.env` for all your clients.
 | | Image | Video | Audio |
 | --- | --- | --- | --- |
 | **OpenAI** | `gpt-image-2` (generate + edit) | `sora-2` | `gpt-4o-mini-tts` |
-| **Gemini** | `gemini-3-pro-image-preview` (Nano Banana Pro, generate + edit) | `veo-3.1-generate-preview` | `gemini-2.5-flash-preview-tts` (WAV) |
+| **Gemini** | `gemini-3-pro-image` (Nano Banana Pro, generate + edit) | `veo-3.1-generate-preview` | `gemini-3.8-flash-tts` (WAV) |
 | **fal.ai** | `fal-ai/nano-banana-pro`, or any fal model | `fal-ai/veo3.1/fast`, or any | `fal-ai/elevenlabs/tts/turbo-v2.5`, or any |
 | **Cloudflare Workers AI** | `@cf/black-forest-labs/flux-1-schnell` | - | `@cf/deepgram/aura-1` |
 
